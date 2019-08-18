@@ -1,5 +1,7 @@
 Patients:{
     name: "",
+    age:"",
+    gender:""
     id: 1,
     history: "Labore dolor proident ad enim esse laborum voluptate sint dolor nostrud.",
     visits: [{
