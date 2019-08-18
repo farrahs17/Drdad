@@ -6,20 +6,20 @@ class SearchArea extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            searhResults: []
+            searchResults: []
         }
     }
     //remove _results when requests are implemented
     populateResults(key,_results){
         //request to query using the key
-        this.setState({searhResults: _results})
+        this.setState({searchResults: _results})
     }
 
     render(){
         return(
             <div className="search-area">
                 <Searchbar handleSubmit={this.populateResults.bind(this)}/>
-                <SearchResults searchResults = {this.state.searhResults}/>
+                <SearchResults searchResults = {this.state.searchResults}/>
             </div>
         )
     }

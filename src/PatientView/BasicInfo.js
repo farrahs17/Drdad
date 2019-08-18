@@ -9,22 +9,7 @@ class BasicInfo extends React.Component{
     }
     
     handleChange(name,e){
-        switch(name){
-            case "name":
-                this.setState({ name: e.target.value })
-                break;
-            case "age":
-                this.setState({ age: e.target.value })
-                break;
-            case "gender":
-                this.setState({ gender: e.target.value })
-                break;
-            case "history":
-                this.setState({ history: e.target.value })
-                break;
-            default:
-                break;
-        }
+        this.setState({[name]:e.target.value})
     }
 
     handleFocus(){
@@ -44,12 +29,13 @@ class BasicInfo extends React.Component{
                             {this.fields.map(i=>{
                                 return(
                                     <div className={`${i}-field`}>
-                                        <label>{i}: </label>
-                                        <input className={this.state.active ? "input-enabled" : "input-disabled"}
-                                            value={this.state[i]}
-                                            onChange={this.handleChange.bind(this, i)}
-                                            onFocus={this.handleFocus.bind(this)}
-                                            onBlur={this.handleBlur.bind(this)} />
+                                        <label>{i}: 
+                                            <input className={this.state.active ? "input-enabled" : "input-disabled"}
+                                                value={this.state[i]}
+                                                onChange={this.handleChange.bind(this, i)}
+                                                onFocus={this.handleFocus.bind(this)}
+                                                onBlur={this.handleBlur.bind(this)} />
+                                        </label>
                                     </div>
                                 )
                             })}

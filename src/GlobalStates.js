@@ -16,8 +16,17 @@ class GlobalStatesProvider extends React.Component{
     }
 
     addVisit(){
-        this.state.currentPatient.visits.push({date:new Date(),type:"checkup",details: ""})
-        //send POST request with the updated patient
+        // let currentPatient = this.state.currentPatient.visits.push("")
+        // this.setState({currentPatient: currentPatient})
+        this.setState((prevState)=>({currentPatient: [...prevState,""]}))
+    }
+
+    updatePatient(){
+        //POST request
+    }
+
+    deletePatient(){
+        //DELETE request
     }
 
     render(){

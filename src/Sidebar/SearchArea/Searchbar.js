@@ -21,7 +21,7 @@ class Searchbar extends React.Component {
                 <input className="search-bar" 
                     onChange={this.handleChange.bind(this)}
                     placeholder="Search"/>
-            </form>
+            </form> 
         )
     }
 }
