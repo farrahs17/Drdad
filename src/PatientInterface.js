@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios"
 
 const PatientInterface = React.createContext()
 
@@ -29,14 +30,18 @@ class Provider extends React.Component{
     }
 
     createPatient(){
-        
+        axios
+            .post("http://localhost:5000/add", { name: "name" })
+            .then(result => console.log("success"))
+            .catch(err => console.log(err));
     }
 
     render(){
         return(
             <PatientInterface.Provider
                 value={{
-                    state: this.state
+                    state: this.state,
+                    createPatient: this.createPatient
                 }}
             >
                 {this.props.children}

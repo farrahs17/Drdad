@@ -3,7 +3,7 @@ import axios from "axios";
 import {PatientInterface} from "../../PatientInterface"
 class CreatePatient extends React.Component {
   handleClick(context) {
-    console.log(context)
+    context.createPatient()
   }
   render() {
     return (
