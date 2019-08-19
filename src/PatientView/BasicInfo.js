@@ -9,7 +9,7 @@ class BasicInfo extends React.Component{
     }
     
     handleChange(context,name,e){
-        context.editCurrentPatient(name,e.target.value)
+        context.setCurrentPatient(name,e.target.value)
     }
 
     handleFocus(){

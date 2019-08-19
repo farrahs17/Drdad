@@ -19,7 +19,7 @@ class Provider extends React.Component {
       .catch(err => console.log(err));
   }
 
-  editCurrentPatient(key,value){
+  setCurrentPatient(key,value){
     let currentPatient = {...this.state.currentPatient}
     console.log(value)
     currentPatient[key] = value
@@ -68,7 +68,7 @@ class Provider extends React.Component {
         value={{
           state: this.state,
           createPatient: this.createPatient.bind(this),
-          editCurrentPatient: this.editCurrentPatient.bind(this)
+          setCurrentPatient: this.setCurrentPatient.bind(this)
         }}
       >
         {this.props.children}
