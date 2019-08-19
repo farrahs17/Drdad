@@ -19,6 +19,13 @@ class Provider extends React.Component {
       .catch(err => console.log(err));
   }
 
+  editCurrentPatient(key,value){
+    let currentPatient = {...this.state.currentPatient}
+    console.log(value)
+    currentPatient[key] = value
+    this.setState({currentPatient: currentPatient})
+  }
+
   addVisit() {
     // let currentPatient = this.state.currentPatient.visits.push("")
     // this.setState({currentPatient: currentPatient})
@@ -38,17 +45,20 @@ class Provider extends React.Component {
   }
 
   createPatient() {
+    let patient = {
+      name: "name",
+      age: "age",
+      gender: "gender",
+      history: "history",
+      visits: []
+    }
     axios
-      .post("http://localhost:5000/add", {
-        patient: {
-          name: "name",
-          age: "age",
-          gender: "gender",
-          history: "history",
-          visits: []
-        }
+      .post("http://localhost:5000/add",{patient: patient})
+      .then(result => {
+        patient.id = result.data.result._id
+        this.setState({currentPatient: patient})
+        console.log("done")
       })
-      .then(result => console.log(result))
       .catch(err => console.log(err));
   }
 
@@ -57,7 +67,8 @@ class Provider extends React.Component {
       <PatientInterface.Provider
         value={{
           state: this.state,
-          createPatient: this.createPatient
+          createPatient: this.createPatient.bind(this),
+          editCurrentPatient: this.editCurrentPatient.bind(this)
         }}
       >
         {this.props.children}
