@@ -1,5 +1,5 @@
 import React from "react";
-import GlobalStates from "../../GlobalStates"
+import {PatientInterface} from "../../PatientInterface"
 
 class SearchResults extends React.Component{
     handleClick(e){
@@ -8,7 +8,7 @@ class SearchResults extends React.Component{
     
     render(){
         return(
-            <GlobalStates.Consumer>
+            <PatientInterface.Consumer>
                 {context=>{
                     return(
                         <div className="search-results">
@@ -24,7 +24,7 @@ class SearchResults extends React.Component{
                         </div>
                     )
                 }}
-            </GlobalStates.Consumer>
+            </PatientInterface.Consumer>
         )
     }
 }

@@ -3,14 +3,17 @@ import logo, { ReactComponent } from './logo.svg';
 import Sidebar from "./Sidebar"
 import PatientView from "./PatientView"
 import './App.css';
+import { Provider } from './PatientInterface'
 
 class App extends React.Component {
   render(){
     return (
-      <div>
-        <Sidebar/>
-        <PatientView/>
-      </div>
+      <Provider>
+        <div>
+          <Sidebar/>
+          <PatientView/>
+        </div>
+      </Provider>
       )
   }
 }

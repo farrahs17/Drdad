@@ -1,5 +1,5 @@
 import React from 'react';
-import GlobalStates from "../GlobalStates"
+import {PatientInterface} from "../PatientInterface"
 
 class BasicInfo extends React.Component{
     constructor(props){
@@ -22,7 +22,7 @@ class BasicInfo extends React.Component{
 
     render(){
         return(
-            <GlobalStates.Consumer>
+            <PatientInterface.Consumer>
                 {context=>{
                     return(
                         <div className="basic-info-container">
@@ -43,7 +43,7 @@ class BasicInfo extends React.Component{
                     )
                 }
                 }
-            </GlobalStates.Consumer> 
+            </PatientInterface.Consumer> 
         )
     }
 }
