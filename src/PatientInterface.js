@@ -34,7 +34,7 @@ class Provider extends React.Component{
             .post("http://localhost:5000/add", { patient:{
                 name: "name", age: "age", gender: "gender", history: "history", visits: []
             }})
-            .then(result => console.log("success"))
+            .then(result => console.log(result))
             .catch(err => console.log(err));
 
     }
