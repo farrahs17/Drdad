@@ -31,9 +31,12 @@ class Provider extends React.Component{
 
     createPatient(){
         axios
-            .post("http://localhost:5000/add", { name: "name" })
+            .post("http://localhost:5000/add", { patient:{
+                name: "name", age: "age", gender: "gender", history: "histoy", visits: []
+            }})
             .then(result => console.log("success"))
             .catch(err => console.log(err));
+
     }
 
     render(){
