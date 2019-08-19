@@ -10,6 +10,27 @@ class Provider extends React.Component{
             currentPatient: "fuck"
         }
     }
+    loadPatient(id) {
+        //request patient data by id and assigns it to state
+    }
+
+    addVisit() {
+        // let currentPatient = this.state.currentPatient.visits.push("")
+        // this.setState({currentPatient: currentPatient})
+        this.setState((prevState) => ({ currentPatient: [...prevState, ""] }))
+    }
+
+    updatePatient() {
+        //POST request
+    }
+
+    deletePatient() {
+        //DELETE request
+    }
+
+    createPatient(){
+        
+    }
 
     render(){
         return(
