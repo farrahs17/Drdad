@@ -24,7 +24,7 @@ class Provider extends React.Component {
     axios
       .post("http://localhost:5000/get", { id: id })
       .then(result => {
-        console.log(result);
+        this.setState({currentPatient: result.data.patient})
       })
       .catch(err => console.log(err));
   }
