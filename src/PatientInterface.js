@@ -76,9 +76,9 @@ class Provider extends React.Component {
     axios
       .post("http://localhost:5000/add", { patient: patient })
       .then(result => {
-        patient.id = result.data.result._id;
+        patient._id = result.data.result._id;
         this.setState({ currentPatient: patient });
-        console.log("done");
+        console.log(result.data.result);
       })
       .catch(err => console.log(err));
   }
