@@ -20,7 +20,7 @@ class Provider extends React.Component {
   loadPatient(id) {
     //request patient data by id and assigns it to state
     axios
-      .get("http://localhost:5000/get")
+      .get("http://localhost:5000/get",{id: id})
       .then(result => console.log(result))
       .catch(err => console.log(err));
   }
@@ -81,7 +81,8 @@ class Provider extends React.Component {
           createPatient: this.createPatient.bind(this),
           setCurrentPatient: this.setCurrentPatient.bind(this),
           updatePatient: this.updatePatient.bind(this),
-          addVisit: this.addVisit.bind(this)
+          addVisit: this.addVisit.bind(this),
+          loadPatient: this.loadPatient.bind(this)
         }}
       >
         {this.props.children}

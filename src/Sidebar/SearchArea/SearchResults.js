@@ -2,8 +2,8 @@ import React from "react";
 import {PatientInterface} from "../../PatientInterface"
 
 class SearchResults extends React.Component{
-    handleClick(e){
-        console.log(e.target.id)
+    handleClick(context,id,e){
+        context.loadPatient(id)
     }
     
     render(){
@@ -15,8 +15,8 @@ class SearchResults extends React.Component{
                             {this.props.searchResults.map(i=>{
                                 return(
                                     <button className="search-result-buttonlike" 
-                                        onClick={this.handleClick.bind(this)}
-                                        id={i.id}>
+                                        onClick={this.handleClick.bind(this,context,i._id)}
+                                        id={i._id}>
                                         {i.name}
                                     </button>
                                 )
