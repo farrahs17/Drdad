@@ -9,7 +9,7 @@ class BasicInfo extends React.Component{
     }
     
     handleChange(context,name,e){
-        context.editCurrentPatient(name,e.target.value)
+        context.setCurrentPatient(name,e.target.value)
     }
 
     handleFocus(){
@@ -18,7 +18,7 @@ class BasicInfo extends React.Component{
 
     handleSubmit(context, e){
         e.preventDefault()
-        console.log("poop")
+        context.updatePatient()
     }
 
     handleBlur(){
@@ -49,7 +49,7 @@ class BasicInfo extends React.Component{
                             </form>
                         </div>
                     )
-                }
+                    }
                 }
             </PatientInterface.Consumer> 
         )

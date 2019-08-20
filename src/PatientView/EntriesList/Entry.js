@@ -11,8 +11,8 @@ class Entry extends React.Component{
     }
     handleChange(e){
         this.setState({currentText: e.target.value})
-
-        this.props.onChange([this.props.id,this.state.currentText])
+        console.log(this.props.id)
+        this.props.onChange([this.props.id,e.target.value])
     }
     handleFocus() {
         this.setState({ active: true })
