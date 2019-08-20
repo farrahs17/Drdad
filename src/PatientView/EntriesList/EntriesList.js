@@ -66,6 +66,7 @@ class EntriesList extends React.Component{
                                         <div className="entry-details">
                                             <input className={this.state.active ? "input-enabled" : "input-disabled"}
                                                 id={this.index}
+                                                defaultValue={i.details}
                                                 onChange={this.handleChange.bind(this)}
                                                 onBlur={this.handleBlur.bind(this)}
                                                 onFocus={this.handleFocus.bind(this)} />
