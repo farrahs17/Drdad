@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import moment from "moment";
 
 const PatientInterface = React.createContext();
 
@@ -8,7 +9,12 @@ class Provider extends React.Component {
     super(props);
     this.state = {
       isLoading: false,
-      currentPatient: "fuck"
+      currentPatient: {
+        name: "name",
+        age: "age",
+        gender: "gender",
+        history: "history",
+        visits: [{date:"",type:"",details:""}]}
     };
   }
   loadPatient(id) {
@@ -21,21 +27,22 @@ class Provider extends React.Component {
 
   setCurrentPatient(key,value){
     let currentPatient = {...this.state.currentPatient}
-    console.log(value)
     currentPatient[key] = value
     this.setState({currentPatient: currentPatient})
+    console.log(this.state.currentPatient)
   }
 
   addVisit() {
-    // let currentPatient = this.state.currentPatient.visits.push("")
-    // this.setState({currentPatient: currentPatient})
-    this.setState(prevState => ({ currentPatient: [...prevState, ""] }));
+    let currentPatient = this.state.currentPatient
+    currentPatient.visits.push({ date: moment().format("DD/MM/YYYY, h:mm"), type: "", details: "" })
+    console.log(currentPatient)
+    this.setState({currentPatient: currentPatient})
+    // this.setState(prevState => ({ currentPatient: [...prevState, ""] }));
   }
 
-  updatePatient(currentPatient) {
-    //POST request
+  updatePatient() {
     axios
-      .post("http://localhost:5000/update", currentPatient)
+      .post("http://localhost:5000/update", {patient: this.state.currentPatient})
       .then(result => console.log(result))
       .catch(err => console.log(err));
   }
@@ -72,7 +79,9 @@ class Provider extends React.Component {
         value={{
           state: this.state,
           createPatient: this.createPatient.bind(this),
-          setCurrentPatient: this.setCurrentPatient.bind(this)
+          setCurrentPatient: this.setCurrentPatient.bind(this),
+          updatePatient: this.updatePatient.bind(this),
+          addVisit: this.addVisit.bind(this)
         }}
       >
         {this.props.children}
