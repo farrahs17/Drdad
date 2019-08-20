@@ -14,35 +14,45 @@ class Provider extends React.Component {
         age: "age",
         gender: "gender",
         history: "history",
-        visits: [{date:"",type:"",details:""}]}
+        visits: [{ date: "", type: "", details: "" }]
+      }
     };
   }
   loadPatient(id) {
     //request patient data by id and assigns it to state
+    console.log(id);
     axios
-      .get("http://localhost:5000/get",{id: id})
-      .then(result => console.log(result))
+      .post("http://localhost:5000/get", { id: id })
+      .then(result => {
+        console.log(result);
+      })
       .catch(err => console.log(err));
   }
 
-  setCurrentPatient(key,value){
-    let currentPatient = {...this.state.currentPatient}
-    currentPatient[key] = value
-    this.setState({currentPatient: currentPatient})
-    console.log(this.state.currentPatient)
+  setCurrentPatient(key, value) {
+    let currentPatient = { ...this.state.currentPatient };
+    currentPatient[key] = value;
+    this.setState({ currentPatient: currentPatient });
+    console.log(this.state.currentPatient);
   }
 
   addVisit() {
-    let currentPatient = this.state.currentPatient
-    currentPatient.visits.push({ date: moment().format("DD/MM/YYYY, h:mm"), type: "", details: "" })
-    console.log(currentPatient)
-    this.setState({currentPatient: currentPatient})
+    let currentPatient = this.state.currentPatient;
+    currentPatient.visits.push({
+      date: moment().format("DD/MM/YYYY, h:mm"),
+      type: "",
+      details: ""
+    });
+    console.log(currentPatient);
+    this.setState({ currentPatient: currentPatient });
     // this.setState(prevState => ({ currentPatient: [...prevState, ""] }));
   }
 
   updatePatient() {
     axios
-      .post("http://localhost:5000/update", {patient: this.state.currentPatient})
+      .post("http://localhost:5000/update", {
+        patient: this.state.currentPatient
+      })
       .then(result => console.log(result))
       .catch(err => console.log(err));
   }
@@ -62,13 +72,13 @@ class Provider extends React.Component {
       gender: "gender",
       history: "history",
       visits: []
-    }
+    };
     axios
-      .post("http://localhost:5000/add",{patient: patient})
+      .post("http://localhost:5000/add", { patient: patient })
       .then(result => {
-        patient.id = result.data.result._id
-        this.setState({currentPatient: patient})
-        console.log("done")
+        patient.id = result.data.result._id;
+        this.setState({ currentPatient: patient });
+        console.log("done");
       })
       .catch(err => console.log(err));
   }
