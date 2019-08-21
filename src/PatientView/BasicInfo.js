@@ -12,17 +12,13 @@ class BasicInfo extends React.Component{
         context.setCurrentPatient(name,e.target.value)
     }
 
-    handleFocus(){
-        this.setState({active: true})
+    handleFocusChange() {
+        this.setState({ active: !this.state.active })
     }
 
     handleSubmit(context, e){
         e.preventDefault()
         context.updatePatient()
-    }
-
-    handleBlur(){
-        this.setState({ active: false })
     }
 
     render(){
@@ -39,8 +35,8 @@ class BasicInfo extends React.Component{
                                                 <input className={this.state.active ? "input-enabled" : "input-disabled"}
                                                     value={context.state.currentPatient[i]}
                                                     onChange={this.handleChange.bind(this,context, i)}
-                                                    onFocus={this.handleFocus.bind(this)}
-                                                    onBlur={this.handleBlur.bind(this)} />
+                                                    onFocus={this.handleFocusChange.bind(this)}
+                                                    onBlur={this.handleFocusChange.bind(this)} />
                                             </label>
                                         </div>
                                     )

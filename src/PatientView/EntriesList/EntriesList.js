@@ -5,9 +5,6 @@ import {PatientInterface} from "../../PatientInterface";
 class EntriesList extends React.Component{
     constructor(props){
         super(props)
-       
-
-        this.state = { active: false}
         this.newEntries = [{date:"",type:"",details:""}]
         this.index = -this.newEntries.length - 1;
     }
@@ -29,12 +26,7 @@ class EntriesList extends React.Component{
         this.index = -this.newEntries.length - 1;
         context.addVisit()
     }
-    handleFocus() {
-        this.setState({ active: true })
-    }
-    handleBlur() {
-        this.setState({ active: false })
-    }
+
     handleSubmit(context){
         context.setCurrentPatient("visits",this.newEntries)
     }
@@ -43,38 +35,16 @@ class EntriesList extends React.Component{
         return(
             <PatientInterface.Consumer>
                 {(context)=>{
-                    /*
-                    return(
-                        <div className="entries-list">
-                            {context.state.currentPatient.visits.map((i)=>{
-                                this.index++
-                                return(
-                                    <Entry data={i} onChange={this.handleChange.bind(this)} id={this.index}></Entry>
-                                )
-                            })}
-                            <button onClick={this.handleClick.bind(this,context)}>New Visit</button>
-                        </div>
-                    )*/
                     this.loadEntries(context)
                     return(
                         <div className="entries-list">
-                            {this.newEntries.map((i)=>{
-                                this.index++
-                                return(
-                                    <div className="entry">
-                                        <p className="entry-date">{i.date || ""}</p>
-                                        <div className="entry-details">
-                                            <input className={this.state.active ? "input-enabled" : "input-disabled"}
-                                                id={this.index}
-                                                defaultValue={i.details}
-                                                onChange={this.handleChange.bind(this)}
-                                                onBlur={this.handleBlur.bind(this)}
-                                                onFocus={this.handleFocus.bind(this)} />
-                                        </div>
-                                    </div>
-                                )
-                            })
-
+                            {
+                                this.newEntries.map((i)=>{
+                                    this.index++
+                                    return(
+                                        <Entry date={i.date} id={this.index} details={i.details} handleChange={this.handleChange.bind(this)}/>
+                                    )
+                                })
                             }
                             <button onClick={this.handleClick.bind(this, context)}>New Visit</button>
                             <button onClick={this.handleSubmit.bind(this, context)}>Submit</button>

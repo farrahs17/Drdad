@@ -3,36 +3,28 @@ import React from 'react';
 class Entry extends React.Component{
     constructor(props){
         super(props)
-        this.state = {active:false, currentText: ""}
+        this.state = {active:false}
     }
 
-    componentDidMount(){
-        this.setState({currentText: this.props.data.details})
+    handleFocusChange() {
+        this.setState({ active: !this.state.active })
     }
+
     handleChange(e){
-        this.setState({currentText: e.target.value})
-        console.log(this.props.id)
-        this.props.onChange([this.props.id,e.target.value])
-    }
-    handleFocus() {
-        this.setState({ active: true })
-    }
-    handleBlur() {
-        this.setState({ active: false })
+        this.props.handleChange(e)
     }
 
     render(){
         return(
             <div className="entry">
-                <p className="entry-date">
-                    {this.props.data.date}
-                </p>
+                <p className="entry-date">{this.props.date || ""}</p>
                 <div className="entry-details">
-                    <input className={this.state.active ? "input-enabled" :"input-disabled"}
-                        value={this.state.currentText}
+                    <input className={this.state.active ? "input-enabled" : "input-disabled"}
+                        id={this.props.id}
+                        defaultValue={this.props.details}
                         onChange={this.handleChange.bind(this)}
-                        onBlur={this.handleBlur.bind(this)}
-                        onFocus={this.handleFocus.bind(this)}/>
+                        onBlur={this.handleFocusChange.bind(this)}
+                        onFocus={this.handleFocusChange.bind(this)} />
                 </div>
             </div>
         )

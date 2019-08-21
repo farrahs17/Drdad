@@ -18,16 +18,29 @@ class Provider extends React.Component {
       }
     };
   }
+  setLoading(val){
+    this.setState({isLoading: val})
+  }
   loadPatient(id) {
     //request patient data by id and assigns it to state
-    console.log(id);
+    let patient = {
+      name: "name",
+      age: "age",
+      gender: "gender",
+      history: "history",
+      visits: []
+    };
+    this.setState({currentPatient: patient})
+    this.setState({isLoading: true})
     axios
       .post("http://localhost:5000/get", { id: id })
       .then(result => {
         this.setState({currentPatient: result.data.patient})
+        this.setState({isLoading: false})
       })
       .catch(err => console.log(err));
   }
+
 
   setCurrentPatient(key, value) {
     let currentPatient = { ...this.state.currentPatient };
@@ -49,19 +62,21 @@ class Provider extends React.Component {
   }
 
   updatePatient() {
+    this.setState({ isLoading: true })
     axios
       .post("http://localhost:5000/update", {
         patient: this.state.currentPatient
       })
-      .then(result => console.log(result))
+      .then(result => this.setState({ isLoading: false }))
       .catch(err => console.log(err));
   }
 
   deletePatient(id) {
     //DELETE request
+    this.setState({ isLoading: true })
     axios
       .post("http://localhost:5000/delete", { id: id })
-      .then(result => console.log(result))
+      .then(result => this.setState({ isLoading: false }))
       .catch(err => console.log(err));
   }
 
@@ -73,12 +88,13 @@ class Provider extends React.Component {
       history: "history",
       visits: []
     };
+    this.setState({ isLoading: true })
     axios
       .post("http://localhost:5000/add", { patient: patient })
       .then(result => {
         patient._id = result.data.result._id;
         this.setState({ currentPatient: patient });
-        console.log(result.data.result);
+        this.setState({ isLoading: false })
       })
       .catch(err => console.log(err));
   }
@@ -92,7 +108,8 @@ class Provider extends React.Component {
           setCurrentPatient: this.setCurrentPatient.bind(this),
           updatePatient: this.updatePatient.bind(this),
           addVisit: this.addVisit.bind(this),
-          loadPatient: this.loadPatient.bind(this)
+          loadPatient: this.loadPatient.bind(this),
+          setLoading: this.setLoading.bind(this)
         }}
       >
         {this.props.children}

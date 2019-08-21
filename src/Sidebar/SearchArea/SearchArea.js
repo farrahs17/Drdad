@@ -12,13 +12,15 @@ class SearchArea extends React.Component {
     };
   }
   //remove _results when requests are implemented
-  populateResults(key,e) {
+  populateResults(key,context,e) {
     // e.preventDefault()
     //request to query using the key
+    context.setLoading(true)
+    console.log(context.state.isLoading)
     axios
       .post("http://localhost:5000/search", { searchKey: key })
       .then(result => {
-        console.log(result);
+        context.setLoading(false)
         this.setState({ searchResults: result.data });
       })
       .catch(err => console.log(err));

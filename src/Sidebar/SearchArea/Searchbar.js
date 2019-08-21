@@ -1,4 +1,5 @@
 import React from "react";
+import {PatientInterface} from "../../PatientInterface"
 
 class Searchbar extends React.Component {
   constructor(props) {
@@ -6,10 +7,10 @@ class Searchbar extends React.Component {
     this.searchKey = "";
   }
 
-  handleSubmit(key,e){
+  handleSubmit(context,e){
+    console.log(context)
     e.preventDefault()
-    this.props.populateResults(this.searchKey)
-    // console.log(this.searchKey)
+    this.props.populateResults(this.searchKey,context)
   }
   
   handleChange(e) {
@@ -18,13 +19,18 @@ class Searchbar extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit.bind(this,this.searchKey)}>
-        <input
-          className="search-bar"
-          onChange={this.handleChange.bind(this)}
-          placeholder="Search"
-        />
-      </form>
+      <PatientInterface.Consumer>
+        {context=>(
+          <form onSubmit={this.handleSubmit.bind(this,context)}>
+            <input
+              className="search-bar"
+              onChange={this.handleChange.bind(this)}
+              placeholder="Search"
+            />
+          </form>
+
+        )}
+      </PatientInterface.Consumer>
     );
   }
 }
