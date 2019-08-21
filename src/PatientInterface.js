@@ -136,7 +136,6 @@ class Provider extends React.Component {
         }}
       >
         {this.props.children}
-        <NewInterface state={this.state}/>
       </PatientInterface.Provider>
     );
   }
