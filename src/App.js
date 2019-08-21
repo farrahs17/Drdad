@@ -1,21 +1,21 @@
-import React from 'react';
-import Sidebar from "./Sidebar"
-import PatientView from "./PatientView"
-import LoadingOverlay from "./LoadingOverlay"
-import './App.css';
-import { Provider } from './PatientInterface'
+import React from "react";
+import Sidebar from "./Sidebar";
+import PatientView from "./PatientView";
+import LoadingOverlay from "./LoadingOverlay";
+import "./App.css";
+import { Provider } from "./PatientInterface";
 
 class App extends React.Component {
-  render(){
+  render() {
     return (
       <Provider>
-        <div>
-          <LoadingOverlay/>
-          <Sidebar/>
-          <PatientView/>
+        <div className="container">
+          <LoadingOverlay />
+          <Sidebar />
+          <PatientView />
         </div>
       </Provider>
-      )
+    );
   }
 }
 

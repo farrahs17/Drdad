@@ -1,8 +1,13 @@
-.input-disabled{
-    border:none;
-    background-image:none;
-    background-color:transparent;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
+.input-disabled {
+  border: none;
+  background-image: none;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.patient-view-container {
+  margin-left: 2%;
+  flex-basis: 80%;
 }

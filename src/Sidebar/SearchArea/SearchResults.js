@@ -15,7 +15,7 @@ class SearchResults extends React.Component {
               {this.props.searchResults.map(i => {
                 return (
                   <button
-                    className="search-result-buttonlike"
+                    className="search-result-buttonlike search-item"
                     onClick={this.handleClick.bind(this, context, i._id)}
                     id={i._id}
                   >

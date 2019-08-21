@@ -1,0 +1,71 @@
+@import "../Styling/variables.scss";
+
+.sidebar {
+  flex-basis: 20%;
+  //   position: fixed;
+  left: 0;
+  height: 100vh;
+  background-color: $navy;
+  width: 20%;
+  .search-area {
+    .search-bar {
+      margin-top: 5%;
+      margin-left: 5%;
+      margin-bottom: 5%;
+      height: 30px;
+      width: 90%;
+      padding: 6%;
+      border-radius: 30px;
+      border-style: solid;
+    }
+    .search-bar:focus {
+      outline-style: none;
+    }
+
+    .search-results {
+      display: flex;
+      flex-direction: column;
+      .search-item {
+        // flex-basis: 90%;
+        width: 100%;
+        margin: 0 auto;
+        background-color: $navy;
+        color: $light;
+        border-style: none;
+        padding: 3%;
+        border-radius: 5px;
+        text-transform: capitalize;
+      }
+      .search-item:hover {
+        background-color: #30324e;
+        cursor: pointer;
+      }
+    }
+  }
+  .tools {
+    display: flex;
+    margin: 1%;
+    position: fixed;
+    bottom: 10px;
+    width: 20%;
+    // left: 2px;
+    .create-patient-div {
+      flex-basis: 50%;
+    }
+    .push-patient-div {
+      flex-basis: 50%;
+    }
+    button {
+      border-color: $light;
+      color: $light;
+      background-color: $navy;
+      border-style: solid;
+      border-radius: 3px;
+      padding: 8%;
+    }
+    button:hover {
+      cursor: pointer;
+      background-color: rgba(255, 255, 255, 0.226);
+    }
+  }
+}
