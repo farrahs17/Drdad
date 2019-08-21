@@ -31,12 +31,16 @@ class BasicInfo extends React.Component{
                                 {this.fields.map(i=>{
                                     return(
                                         <div className={`${i}-field`}>
-                                            <label>{i}: 
-                                                <input className={this.state.active ? "input-enabled" : "input-disabled"}
+                                            <label>{i}:
+                                                {i != "history" ? <input className={this.state.active ? "input-enabled" : "input-disabled"}
                                                     value={context.state.currentPatient[i]}
-                                                    onChange={this.handleChange.bind(this,context, i)}
+                                                    onChange={this.handleChange.bind(this, context, i)}
                                                     onFocus={this.handleFocusChange.bind(this)}
-                                                    onBlur={this.handleFocusChange.bind(this)} />
+                                                    onBlur={this.handleFocusChange.bind(this)} /> : <textarea className={this.state.active ? "input-enabled" : "input-disabled"}
+                                                        value={context.state.currentPatient[i]}
+                                                        onChange={this.handleChange.bind(this, context, i)}
+                                                        onFocus={this.handleFocusChange.bind(this)}
+                                                        onBlur={this.handleFocusChange.bind(this)} />} 
                                             </label>
                                         </div>
                                     )

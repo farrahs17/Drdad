@@ -7,8 +7,8 @@ function LoadingOverlay(){
             <PatientInterface.Consumer>
                 {context => {
                     return (
-                        <div className={context.state.isLoading ? "show-loader popup": "popup"} id="popup2">
-                            <div class="sp sp-hydrogen"></div>
+                        <div className={context.state.isLoading ? "show-loader popup": "popup"}>
+                            <div className="sp sp-hydrogen"></div>
                            
                     </div>)}
                     } 

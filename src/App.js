@@ -1,5 +1,4 @@
 import React from 'react';
-import logo, { ReactComponent } from './logo.svg';
 import Sidebar from "./Sidebar"
 import PatientView from "./PatientView"
 import LoadingOverlay from "./LoadingOverlay"

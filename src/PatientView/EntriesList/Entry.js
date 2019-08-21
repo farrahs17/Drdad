@@ -19,7 +19,7 @@ class Entry extends React.Component{
             <div className="entry">
                 <p className="entry-date">{this.props.date || ""}</p>
                 <div className="entry-details">
-                    <input className={this.state.active ? "input-enabled" : "input-disabled"}
+                    <textarea className={this.state.active ? "input-enabled" : "input-disabled"}
                         id={this.props.id}
                         defaultValue={this.props.details}
                         onChange={this.handleChange.bind(this)}
