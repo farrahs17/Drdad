@@ -2,11 +2,10 @@
 
 .sidebar {
   flex-basis: 20%;
-  //   position: fixed;
   left: 0;
   height: 100vh;
   background-color: $navy;
-  width: 20%;
+
   .search-area {
     .search-bar {
       margin-top: 5%;
@@ -43,17 +42,20 @@
     }
   }
   .tools {
+    width: 18%;
     display: flex;
-    margin: 1%;
+    margin: 10px;
     position: fixed;
     bottom: 10px;
-    width: 20%;
+
     // left: 2px;
+    // justify-content: space-around;
     .create-patient-div {
       flex-basis: 50%;
     }
     .push-patient-div {
       flex-basis: 50%;
+      margin-left: 15px;
     }
     button {
       border-color: $light;
@@ -61,7 +63,9 @@
       background-color: $navy;
       border-style: solid;
       border-radius: 3px;
-      padding: 8%;
+      padding: 3%;
+      width: 100%;
+      font-size: 15px;
     }
     button:hover {
       cursor: pointer;

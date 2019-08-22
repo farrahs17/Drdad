@@ -1,3 +1,5 @@
+@import "../Styling/variables.scss";
+
 .input-disabled {
   border: none;
   background-image: none;
@@ -8,6 +10,78 @@
 }
 
 .patient-view-container {
-  margin-left: 2%;
   flex-basis: 80%;
+  background-color: $light;
+  .entries-list {
+    width: 100%;
+    .card-header {
+      background-color: $lilac;
+      border: none;
+      p {
+        color: $light !important;
+        font-weight: 500;
+        text-align: center;
+      }
+    }
+    textarea {
+      width: 100%;
+    }
+    .new-visit {
+      margin: 1%;
+      margin-top: 0;
+      border-color: $navy;
+      color: $light;
+      background-color: $navy;
+      border-style: solid;
+      border-radius: 3px;
+      padding: 1%;
+      font-weight: 600;
+    }
+    .new-visit:hover {
+      cursor: pointer;
+      background-color: rgba(255, 255, 255, 0.226);
+      color: $navy;
+    }
+  }
+  .basic-info-form {
+    margin-left: 1%;
+    margin-top: 2%;
+    // width: 100%;
+    label {
+      color: $black;
+      text-transform: capitalize;
+      width: 100%;
+      font-weight: 600;
+      input {
+        margin-left: 2%;
+        // padding-left: 1%;
+        width: 60%;
+        text-transform: capitalize;
+      }
+      textarea {
+        margin: 1%;
+        // padding-left: 1%;
+        width: 95%;
+        text-transform: capitalize;
+      }
+    }
+    button {
+      position: fixed;
+      right: 50px;
+      bottom: 30px;
+      z-index: 100;
+      border-color: $navy;
+      color: $light;
+      background-color: $navy;
+      border-style: solid;
+      border-radius: 3px;
+      padding: 1%;
+      font-weight: 600;
+    }
+    button:hover {
+      cursor: pointer;
+      background-color: rgba(255, 255, 255, 0.226);
+      color: $navy;
+    }
+  }
 }

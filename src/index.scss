@@ -1,3 +1,16 @@
 @import "./PatientView/PatientView.scss";
 @import "./Styling/variables.scss";
 @import "./Sidebar/Sidebar.scss";
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+.app-container {
+  display: flex;
+  width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+}
