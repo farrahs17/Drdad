@@ -46,7 +46,7 @@ class Provider extends React.Component {
         toast("Patient changed")
       })
       .catch(err => {
-        toast("An error occurred, check your internet connection")
+        toast.error("An error occurred, check your internet connection")
         this.setLoading(false)
       });
   }
@@ -82,7 +82,7 @@ class Provider extends React.Component {
         toast(`Patient ${this.state.currentPatient.name} updated successfully`)
       })
       .catch(err => {
-        toast("An error occurred, check your internet connection")
+        toast.error("An error occurred, check your internet connection")
         this.setLoading(false)
       });
   }
@@ -94,7 +94,7 @@ class Provider extends React.Component {
       .post("http://localhost:5000/delete", { id: id })
       .then(result => this.setLoading(false))
       .catch(err => {
-        toast("An error occurred, check your internet connection")
+        toast.error("An error occurred, check your internet connection")
         this.setLoading(false)
       });
   }
@@ -117,7 +117,7 @@ class Provider extends React.Component {
         toast("New patient created")
       })
       .catch(err => {
-        toast("An error occurred, check your internet connection")
+        toast.error("An error occurred, check your internet connection")
         this.setLoading(false)
       });
   }

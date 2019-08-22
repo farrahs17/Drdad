@@ -2,7 +2,7 @@ import React from "react";
 import Searchbar from "./Searchbar";
 import SearchResults from "./SearchResults";
 import axios from "axios";
-import {PatientInterface} from "../../PatientInterface"
+import {toast} from "react-toastify"
 
 class SearchArea extends React.Component {
   constructor(props) {
@@ -13,6 +13,7 @@ class SearchArea extends React.Component {
   }
   //remove _results when requests are implemented
   populateResults(key,context,e) {
+    console.log(e.target.invalid)
     // e.preventDefault()
     //request to query using the key
     context.setLoading(true)
