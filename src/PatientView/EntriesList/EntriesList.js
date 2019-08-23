@@ -6,7 +6,7 @@ import Accordion from "react-bootstrap/Accordion";
 class EntriesList extends React.Component {
   constructor(props) {
     super(props);
-    this.newEntries = [{ date: "", type: "", details: "" }];
+    this.newEntries = [];
     this.index = -this.newEntries.length - 1;
   }
 

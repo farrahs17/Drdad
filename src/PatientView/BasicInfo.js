@@ -65,8 +65,8 @@ class BasicInfo extends React.Component {
                     </div>
                   );
                 })}
-                <button onClick={this.handleSubmit.bind(this, context)}>
-                  Submit
+                <button onClick={this.handleSubmit.bind(this, context)} className="btn-submit" disabled={!context.state.changed}>
+                  <i class="far fa-edit"></i>
                 </button>
               </form>
             </div>

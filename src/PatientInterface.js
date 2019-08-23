@@ -18,13 +18,18 @@ class Provider extends React.Component {
         age: "age",
         gender: "gender",
         history: "history",
-        visits: [{ date: "", type: "", details: "" }]
-      }
+        visits: []
+      },
+      changed: false
     };
   }
 
   setLoading(val){
     this.setState({isLoading: val})
+  }
+
+  setChanged(val){
+    this.setState({changed: val})
   }
 
   loadPatient(id) {
@@ -43,6 +48,7 @@ class Provider extends React.Component {
       .then(result => {
         this.setState({currentPatient: result.data.patient})
         this.setLoading(false)
+        this.setChanged(false)
         toast("Patient changed")
       })
       .catch(err => {
@@ -56,7 +62,7 @@ class Provider extends React.Component {
     let currentPatient = { ...this.state.currentPatient };
     currentPatient[key] = value;
     this.setState({ currentPatient: currentPatient });
-    console.log(this.state.currentPatient);
+    this.setChanged(true)
   }
 
   addVisit() {
@@ -68,6 +74,7 @@ class Provider extends React.Component {
     });
     console.log(currentPatient);
     this.setState({ currentPatient: currentPatient });
+    this.setChanged(true)
     // this.setState(prevState => ({ currentPatient: [...prevState, ""] }));
   }
 
@@ -80,6 +87,7 @@ class Provider extends React.Component {
       .then(result => {
         this.setLoading(false)
         toast(`Patient ${this.state.currentPatient.name} updated successfully`)
+        this.setChanged(false)
       })
       .catch(err => {
         toast.error("An error occurred, check your internet connection")
@@ -115,6 +123,7 @@ class Provider extends React.Component {
         this.setState({ currentPatient: patient });
         this.setLoading(false)
         toast("New patient created")
+        this.setChanged(false)
       })
       .catch(err => {
         toast.error("An error occurred, check your internet connection")

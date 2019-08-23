@@ -67,17 +67,67 @@
     }
     button {
       position: fixed;
-      right: 50px;
-      bottom: 30px;
+      right: 1rem;
+      bottom: 1rem;
       z-index: 100;
-      border-color: $navy;
-      color: $light;
-      background-color: $navy;
+      
       border-style: solid;
       border-radius: 3px;
       padding: 1%;
       font-weight: 600;
     }
+    button:disabled{
+      background: rgba(100, 100, 100, 1);
+    }
+    button:disabled:hover{
+      background: rgba(100, 100, 100, 1);
+    }
+    button:enabled{
+      border-color: $navy;
+      color: $light;
+      background-color: $navy;
+      
+    }
+
+  .btn-submit::before,
+  .btn-submit::after {
+      left: 50%;
+      opacity: 0;
+      position: absolute;
+      z-index: -100;
+  }
+
+  .btn-submit:hover::before,
+  .btn-submit:focus::before,
+  .btn-submit:hover::after,
+  .btn-submit:focus::after {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      z-index: 100; 
+  }
+
+  .btn-submit::after {
+      background:$navy;
+      border-radius: 3px;
+      font-size: 0.46em;
+      bottom: 110%;
+      color: $light;
+      content: "Save Changes";
+      margin-left: -3.25em;
+      padding: 0.2em;
+      transition: all .3s cubic-bezier(.84,-0.18,.31,1.26) .2s;
+      transform:  scale(.6) translateY(50%);  
+      width: 6.5em;
+  }
+  .btn-submit:disabled::after{
+    content: "No Changes to Save"
+  }
+
+  .btn-submit:hover::after,
+  .btn-submit:focus::after  {
+      transition: all .3s cubic-bezier(.84,-0.18,.31,1.26);
+}
+
     button:hover {
       cursor: pointer;
       background-color: rgba(255, 255, 255, 0.226);

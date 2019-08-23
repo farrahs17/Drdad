@@ -1,0 +1,1 @@
+Sidebar is not fixed, it is just at high as the viewport

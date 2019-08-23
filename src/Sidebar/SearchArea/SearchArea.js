@@ -4,6 +4,8 @@ import SearchResults from "./SearchResults";
 import axios from "axios";
 import {toast} from "react-toastify"
 
+axios.defaults.timeout = 8000
+
 class SearchArea extends React.Component {
   constructor(props) {
     super(props);
@@ -13,18 +15,19 @@ class SearchArea extends React.Component {
   }
   //remove _results when requests are implemented
   populateResults(key,context,e) {
-    console.log(e.target.invalid)
-    // e.preventDefault()
     //request to query using the key
     context.setLoading(true)
-    console.log(context.state.isLoading)
     axios
       .post("http://localhost:5000/search", { searchKey: key })
       .then(result => {
         context.setLoading(false)
         this.setState({ searchResults: result.data });
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log("wat")
+        context.setLoading(false)
+        toast.error("An error occurred, check your internet connection")
+      });
   }
 
   render() {

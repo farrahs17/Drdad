@@ -5,10 +5,10 @@ class Searchbar extends React.Component {
   constructor(props) {
     super(props);
     this.searchKey = "";
+    this.state = {error: false}
   }
 
   handleSubmit(context,e){
-    console.log(context)
     e.preventDefault()
     this.props.populateResults(this.searchKey,context,e)
   }
@@ -26,7 +26,9 @@ class Searchbar extends React.Component {
               className="search-bar"
               onChange={this.handleChange.bind(this)}
               placeholder="Search"
-              max="4"
+              minLength="1"
+              pattern="(?!^\s).+"
+              required
             />
           </form>
 

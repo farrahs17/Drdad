@@ -16,9 +16,8 @@ class CreatePatient extends React.Component {
               onClick={this.handleClick.bind(this, context)}
               type="submit"
             >
-              <i class="fas fa-plus"></i>
+              <i className="fas fa-plus"></i>
               {"  "}
-              New Patient
             </button>
           </div>
         )}
