@@ -3,6 +3,7 @@ import axios from "axios";
 import moment from "moment";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+const socket = require("socket.io-client")("http://127.0.0.1:5000")
 
 axios.defaults.timeout = 8000
 
@@ -22,6 +23,10 @@ class Provider extends React.Component {
       },
       changed: false
     };
+    socket.on("here push",(data)=>{
+      toast("Patient Changed")
+      this.setState({currentPatient: data})
+    })
   }
 
   setLoading(val){
@@ -30,6 +35,11 @@ class Provider extends React.Component {
 
   setChanged(val){
     this.setState({changed: val})
+  }
+
+  pushPatient(){
+    socket.emit("push incoming", this.state.currentPatient)
+    
   }
 
   loadPatient(id) {
@@ -141,7 +151,8 @@ class Provider extends React.Component {
           updatePatient: this.updatePatient.bind(this),
           addVisit: this.addVisit.bind(this),
           loadPatient: this.loadPatient.bind(this),
-          setLoading: this.setLoading.bind(this)
+          setLoading: this.setLoading.bind(this),
+          pushPatient: this.pushPatient.bind(this)
         }}
       >
         {this.props.children}
