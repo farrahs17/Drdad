@@ -12,15 +12,16 @@ const PatientInterface = React.createContext();
 class Provider extends React.Component {
   constructor(props) {
     super(props);
+    this.emptyPatient = {
+      name: "name",
+      age: "age",
+      gender: "gender",
+      history: "history",
+      visits: []
+    }
     this.state = {
       isLoading: false,
-      currentPatient: {
-        name: "name",
-        age: "age",
-        gender: "gender",
-        history: "history",
-        visits: []
-      },
+      currentPatient: this.emptyPatient,
       changed: false
     };
     socket.on("here push",(data)=>{
@@ -42,6 +43,12 @@ class Provider extends React.Component {
     
   }
 
+  errToast(err = "ERROR: No error message"){
+    toast.error("An error occurred, check your internet connection")
+    this.setLoading(false)
+    console.log(err)
+  }
+
   loadPatient(id) {
     //request patient data by id and assigns it to state
     let patient = {
@@ -56,14 +63,18 @@ class Provider extends React.Component {
     axios
       .post("http://localhost:5000/get", { id: id })
       .then(result => {
-        this.setState({currentPatient: result.data.patient})
-        this.setLoading(false)
-        this.setChanged(false)
-        toast("Patient changed")
+        if(result.data.patient){
+          this.setState({currentPatient: result.data.patient})
+          this.setLoading(false)
+          this.setChanged(false)
+          toast("Patient changed")
+        }
+        else{
+          this.errToast()
+          }
       })
       .catch(err => {
-        toast.error("An error occurred, check your internet connection")
-        this.setLoading(false)
+        this.errToast(err)
       });
   }
 
@@ -100,32 +111,27 @@ class Provider extends React.Component {
         this.setChanged(false)
       })
       .catch(err => {
-        toast.error("An error occurred, check your internet connection")
-        this.setLoading(false)
+        this.errToast(err)
       });
   }
 
-  deletePatient(id) {
+  deletePatient() {
     //DELETE request
     this.setLoading(true)
     axios
-      .post("http://localhost:5000/delete", { id: id })
-      .then(result => this.setLoading(false))
+      .post("http://localhost:5000/delete", { _id: this.state.currentPatient._id })
+      .then(result => {
+        toast(`Patient ${this.state.currentPatient.name} deleted`)
+        this.setState({currentPatient: this.emptyPatient})
+        this.setLoading(false)})
       .catch(err => {
-        toast.error("An error occurred, check your internet connection")
-        this.setLoading(false)
+        this.errToast(err)
       });
   }
 
   createPatient() {
-    let patient = {
-      name: "name",
-      age: "age",
-      gender: "gender",
-      history: "history",
-      visits: []
-    };
     this.setLoading(true)
+    let patient = this.emptyPatient
     axios
       .post("http://localhost:5000/add", { patient: patient })
       .then(result => {
@@ -136,8 +142,7 @@ class Provider extends React.Component {
         this.setChanged(false)
       })
       .catch(err => {
-        toast.error("An error occurred, check your internet connection")
-        this.setLoading(false)
+        this.errToast(err)
       });
   }
 
@@ -152,7 +157,8 @@ class Provider extends React.Component {
           addVisit: this.addVisit.bind(this),
           loadPatient: this.loadPatient.bind(this),
           setLoading: this.setLoading.bind(this),
-          pushPatient: this.pushPatient.bind(this)
+          pushPatient: this.pushPatient.bind(this),
+          deletePatient: this.deletePatient.bind(this)
         }}
       >
         {this.props.children}

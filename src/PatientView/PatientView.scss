@@ -92,42 +92,54 @@
       
     }
 
-  .btn-submit::before,
-  .btn-submit::after {
+    .btn-delete, .btn-confirm-delete{
+      right: 5rem;
+    }
+
+    .btn-confirm-delete:focus{
+      background: rgba(212, 13, 13, 0.8);
+    }
+    .btn-confirm-delete::after{
+      content: "Are you sure?";
+      background:rgba(212, 13, 13, 0.8);
+    }
+
+  button::before,
+  button::after {
       left: 50%;
       opacity: 0;
       position: absolute;
       z-index: -100;
   }
 
-  .btn-submit:hover::before,
-  .btn-submit:focus::before,
-  .btn-submit:hover::after,
-  .btn-submit:focus::after {
+  button:hover::before,
+  button:focus::before,
+  button:hover::after,
+  button:focus::after {
       opacity: 1;
       transform: scale(1) translateY(0);
       z-index: 100; 
   }
 
-  .btn-submit::after {
+  button::after {
       background:$navy;
       border-radius: 3px;
       font-size: 0.46em;
       bottom: 110%;
       color: $light;
-      content: "Save Changes";
+      content: attr(tooltip-active);
       margin-left: -3.25em;
       padding: 0.2em;
       transition: all .3s cubic-bezier(.84,-0.18,.31,1.26) .2s;
       transform:  scale(.6) translateY(50%);  
       width: 6.5em;
   }
-  .btn-submit:disabled::after{
-    content: "No Changes to Save"
+  button:disabled::after{
+    content: attr(tooltip-inactive)
   }
 
-  .btn-submit:hover::after,
-  .btn-submit:focus::after  {
+  button:hover::after,
+  button:focus::after  {
       transition: all .3s cubic-bezier(.84,-0.18,.31,1.26);
 }
 

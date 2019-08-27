@@ -4,7 +4,7 @@ import { PatientInterface } from "../PatientInterface";
 class BasicInfo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { active: false };
+    this.state = { active: false, confirmDelete: 0 };
     this.fields = ["name", "age", "gender", "history"];
   }
 
@@ -19,6 +19,26 @@ class BasicInfo extends React.Component {
   handleSubmit(context, e) {
     e.preventDefault();
     context.updatePatient();
+  }
+
+  handleDeleteBlur(){
+    this.setState({confirmDelete: 0})
+  }
+
+  handleDelete(context,e){
+    e.preventDefault();
+    // context.deletePatient();
+    switch (this.state.confirmDelete) {
+      case 0:
+        this.setState({confirmDelete:1})
+        break;
+      case 1:
+        this.setState({confirmDelete:0})
+        context.deletePatient()
+        break;
+      default:
+        break;
+    }
   }
 
   render() {
@@ -65,9 +85,21 @@ class BasicInfo extends React.Component {
                     </div>
                   );
                 })}
-                <button onClick={this.handleSubmit.bind(this, context)} className="btn-submit" disabled={!context.state.changed}>
+                <button onClick={this.handleSubmit.bind(this, context)} 
+                className="btn-submit" 
+                disabled={!context.state.changed}
+                tooltip-active="Save Changes"
+                tooltip-inactive="No Changes to Save"
+                >
                   <i class="far fa-edit"></i>
                 </button>
+                <button onClick={this.handleDelete.bind(this, context)}
+                onBlur={this.handleDeleteBlur.bind(this)} 
+                className={this.state.confirmDelete ? "btn-confirm-delete" : "btn-delete"} 
+                disabled={!(context.state.currentPatient._id)}
+                tooltip-active="Delete Patient"
+                tooltip-inactive="No Patient Loaded"><i class="fa fa-trash" aria-hidden="true"></i>
+</button>
               </form>
             </div>
           );
