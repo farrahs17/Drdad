@@ -4,7 +4,7 @@
   flex-basis: 20%;
   left: 0;
   height: 100vh;
-  background-color: $navy;
+  background-color: $darkSlate;
 
   .search-area {
     .search-bar {
@@ -16,6 +16,7 @@
       padding: 6%;
       border-radius: 30px;
       border-style: solid;
+      border-color: $darkSlate;
     }
     .search-bar:focus {
       outline-style: none;
@@ -28,39 +29,50 @@
         // flex-basis: 90%;
         width: 100%;
         margin: 0 auto;
-        background-color: $navy;
-        color: $light;
+        background-color: $darkSlate;
+        color: #e2e2e2;
         border-style: none;
         padding: 3%;
         border-radius: 5px;
         text-transform: capitalize;
       }
       .search-item:hover {
-        background-color: #30324e;
+        background-color: #36586b;
         cursor: pointer;
       }
     }
   }
   .tools {
-    width: 18%;
+    width: 20%;
     display: flex;
     margin: 10px;
     position: fixed;
     bottom: 10px;
+    padding-left: 1%;
+    // padding-right: 0.5%;
 
     // left: 2px;
-    // justify-content: space-around;
+    justify-content: space-around;
     .create-patient-div {
-      flex-basis: 50%;
+      flex-basis: 20%;
+      width: 40%;
+      padding: 1%;
+      button {
+        width: 80%;
+      }
     }
     .push-patient-div {
       flex-basis: 50%;
-      margin-left: 15px;
+      button {
+        width: 90%;
+      }
+      // padding: 1%;
+      // margin-left: 5px;
     }
     button {
-      border-color: $light;
-      color: $light;
-      background-color: $navy;
+      border-color: $white;
+      color: $white;
+      background-color: $darkSlate;
       border-style: solid;
       border-radius: 3px;
       padding: 3%;

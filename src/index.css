@@ -21,57 +21,151 @@ body {
 
 .patient-view-container {
   flex-basis: 80%;
-  background-color: #eaf2f3;
+  background-color: #9fb1bc;
 }
 .patient-view-container .entries-list {
-  width: 100%;
+  width: 95%;
+  margin: 0 auto;
+  height: 30%;
 }
 .patient-view-container .entries-list .card-header {
-  background-color: #6669b2;
+  background-color: #f7fdff;
   border: none;
+  padding: 0.5%;
 }
 .patient-view-container .entries-list .card-header p {
-  color: #eaf2f3 !important;
+  color: #656565 !important;
   font-weight: 500;
-  text-align: center;
 }
 .patient-view-container .entries-list textarea {
   width: 100%;
 }
-.patient-view-container .basic-info-form {
-  margin-left: 1%;
-  margin-top: 2%;
-}
-.patient-view-container .basic-info-form label {
-  color: #131515;
-  text-transform: capitalize;
-  width: 100%;
-  font-weight: 600;
-}
-.patient-view-container .basic-info-form label input {
-  margin-left: 2%;
-  width: 60%;
-  text-transform: capitalize;
-}
-.patient-view-container .basic-info-form label textarea {
-  margin: 2%;
-  width: 95%;
-  text-transform: capitalize;
-}
-.patient-view-container .basic-info-form button {
-  border-color: #1f2041;
-  color: #eaf2f3;
-  background-color: #1f2041;
+.patient-view-container .entries-list .new-visit {
+  margin: 1%;
+  margin-top: 0;
+  transition: all 100ms;
+  border-color: #2e5266;
+  color: #f7fdff;
+  background-color: #2e5266;
   border-style: solid;
   border-radius: 3px;
   padding: 1%;
   font-weight: 600;
-  margin: 0 auto;
 }
-.patient-view-container .basic-info-form button:hover {
+.patient-view-container .entries-list .new-visit:hover {
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.226);
-  color: #1f2041;
+  color: #2e5266;
+}
+.patient-view-container .basic-info-container {
+  width: auto;
+  margin: 3%;
+  background-color: #f7fdff;
+}
+.patient-view-container .basic-info-container .basic-info-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.patient-view-container .basic-info-container .basic-info-form input {
+  color: #656565;
+  text-transform: capitalize;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.patient-view-container .basic-info-container .basic-info-form div {
+  margin: 0 auto;
+}
+.patient-view-container .basic-info-container .basic-info-form .name-field input {
+  font-size: 36px;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-align: center;
+}
+.patient-view-container .basic-info-container .basic-info-form .age-field {
+  font-size: 20px;
+}
+.patient-view-container .basic-info-container .basic-info-form textarea {
+  color: #656565;
+  text-transform: capitalize;
+  font-weight: 600;
+  width: 200px;
+  text-transform: capitalize;
+}
+.patient-view-container .basic-info-container .basic-info-form button {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 100;
+  transition: all 100ms;
+  border-style: solid;
+  border-radius: 3px;
+  padding: 1%;
+  font-weight: 600;
+}
+.patient-view-container .basic-info-container .basic-info-form button:disabled {
+  background: rgba(100, 100, 100, 0.8);
+  border-color: rgba(100, 100, 100, 0.8);
+}
+.patient-view-container .basic-info-container .basic-info-form button:disabled:hover {
+  background: rgba(100, 100, 100, 0.8);
+  color: #f7fdff;
+}
+.patient-view-container .basic-info-container .basic-info-form button:enabled {
+  border-color: #2e5266;
+  color: #f7fdff;
+  background-color: #2e5266;
+}
+.patient-view-container .basic-info-container .basic-info-form .btn-delete,
+.patient-view-container .basic-info-container .basic-info-form .btn-confirm-delete {
+  right: 5rem;
+}
+.patient-view-container .basic-info-container .basic-info-form .btn-confirm-delete:focus {
+  background: rgba(212, 13, 13, 0.8);
+}
+.patient-view-container .basic-info-container .basic-info-form .btn-confirm-delete::after {
+  content: "Are you sure?";
+  background: rgba(212, 13, 13, 0.8);
+}
+.patient-view-container .basic-info-container .basic-info-form button::before,
+.patient-view-container .basic-info-container .basic-info-form button::after {
+  left: 50%;
+  opacity: 0;
+  position: absolute;
+  z-index: -100;
+}
+.patient-view-container .basic-info-container .basic-info-form button:hover::before,
+.patient-view-container .basic-info-container .basic-info-form button:focus::before,
+.patient-view-container .basic-info-container .basic-info-form button:hover::after,
+.patient-view-container .basic-info-container .basic-info-form button:focus::after {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  z-index: 100;
+}
+.patient-view-container .basic-info-container .basic-info-form button::after {
+  background: #2e5266;
+  border-radius: 3px;
+  font-size: 0.46em;
+  bottom: 110%;
+  color: #f7fdff;
+  content: attr(tooltip-active);
+  margin-left: -3.25em;
+  padding: 0.2em;
+  transition: all 0.3s cubic-bezier(0.84, -0.18, 0.31, 1.26) 0.2s;
+  transform: scale(0.6) translateY(50%);
+  width: 6.5em;
+}
+.patient-view-container .basic-info-container .basic-info-form button:disabled::after {
+  content: attr(tooltip-inactive);
+}
+.patient-view-container .basic-info-container .basic-info-form button:hover::after,
+.patient-view-container .basic-info-container .basic-info-form button:focus::after {
+  transition: all 0.3s cubic-bezier(0.84, -0.18, 0.31, 1.26);
+}
+.patient-view-container .basic-info-container .basic-info-form button:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.226);
+  color: #2e5266;
 }
 
 body {
@@ -102,7 +196,7 @@ body {
   flex-basis: 20%;
   left: 0;
   height: 100vh;
-  background-color: #1f2041;
+  background-color: #2e5266;
 }
 .sidebar .search-area .search-bar {
   margin-top: 5%;
@@ -113,6 +207,7 @@ body {
   padding: 6%;
   border-radius: 30px;
   border-style: solid;
+  border-color: #2e5266;
 }
 .sidebar .search-area .search-bar:focus {
   outline-style: none;
@@ -124,39 +219,48 @@ body {
 .sidebar .search-area .search-results .search-item {
   width: 100%;
   margin: 0 auto;
-  background-color: #1f2041;
-  color: #eaf2f3;
+  background-color: #2e5266;
+  color: #e2e2e2;
   border-style: none;
   padding: 3%;
   border-radius: 5px;
   text-transform: capitalize;
 }
 .sidebar .search-area .search-results .search-item:hover {
-  background-color: #30324e;
+  background-color: #36586b;
   cursor: pointer;
 }
 .sidebar .tools {
-  width: 18%;
+  width: 20%;
   display: flex;
   margin: 10px;
   position: fixed;
   bottom: 10px;
+  padding-left: 1%;
+  justify-content: space-around;
 }
 .sidebar .tools .create-patient-div {
-  flex-basis: 50%;
+  flex-basis: 20%;
+  width: 40%;
+  padding: 1%;
+}
+.sidebar .tools .create-patient-div button {
+  width: 80%;
 }
 .sidebar .tools .push-patient-div {
   flex-basis: 50%;
-  margin-left: 15px;
+}
+.sidebar .tools .push-patient-div button {
+  width: 90%;
 }
 .sidebar .tools button {
-  border-color: #eaf2f3;
-  color: #eaf2f3;
-  background-color: #1f2041;
+  border-color: #f7fdff;
+  color: #f7fdff;
+  background-color: #2e5266;
   border-style: solid;
   border-radius: 3px;
   padding: 3%;
-  width: 100%;
+  width: 50%;
   font-size: 15px;
 }
 .sidebar .tools button:hover {

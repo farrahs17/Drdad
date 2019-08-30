@@ -21,20 +21,20 @@ class BasicInfo extends React.Component {
     context.updatePatient();
   }
 
-  handleDeleteBlur(){
-    this.setState({confirmDelete: 0})
+  handleDeleteBlur() {
+    this.setState({ confirmDelete: 0 });
   }
 
-  handleDelete(context,e){
+  handleDelete(context, e) {
     e.preventDefault();
     // context.deletePatient();
     switch (this.state.confirmDelete) {
       case 0:
-        this.setState({confirmDelete:1})
+        this.setState({ confirmDelete: 1 });
         break;
       case 1:
-        this.setState({confirmDelete:0})
-        context.deletePatient()
+        this.setState({ confirmDelete: 0 });
+        context.deletePatient();
         break;
       default:
         break;
@@ -53,53 +53,58 @@ class BasicInfo extends React.Component {
               >
                 {this.fields.map(i => {
                   return (
-                    <div className={`${i}-field basic-info-form`}>
-                      <label>
-                        {i}:
-                        {i != "history" ? (
-                          <input
-                            className={
-                              this.state.active
-                                ? "input-enabled"
-                                : "input-disabled"
-                            }
-                            value={context.state.currentPatient[i]}
-                            onChange={this.handleChange.bind(this, context, i)}
-                            onFocus={this.handleFocusChange.bind(this)}
-                            onBlur={this.handleFocusChange.bind(this)}
-                          />
-                        ) : (
-                          <textarea
-                            className={
-                              this.state.active
-                                ? "input-enabled"
-                                : "input-disabled"
-                            }
-                            value={context.state.currentPatient[i]}
-                            onChange={this.handleChange.bind(this, context, i)}
-                            onFocus={this.handleFocusChange.bind(this)}
-                            onBlur={this.handleFocusChange.bind(this)}
-                          />
-                        )}
-                      </label>
+                    <div className={`${i}-field `}>
+                      {i != "history" ? (
+                        <input
+                          className={
+                            this.state.active
+                              ? "input-enabled"
+                              : "input-disabled"
+                          }
+                          value={context.state.currentPatient[i]}
+                          onChange={this.handleChange.bind(this, context, i)}
+                          onFocus={this.handleFocusChange.bind(this)}
+                          onBlur={this.handleFocusChange.bind(this)}
+                        />
+                      ) : (
+                        <textarea
+                          className={
+                            this.state.active
+                              ? "input-enabled"
+                              : "input-disabled"
+                          }
+                          value={context.state.currentPatient[i]}
+                          onChange={this.handleChange.bind(this, context, i)}
+                          onFocus={this.handleFocusChange.bind(this)}
+                          onBlur={this.handleFocusChange.bind(this)}
+                        />
+                      )}
                     </div>
                   );
                 })}
-                <button onClick={this.handleSubmit.bind(this, context)} 
-                className="btn-submit" 
-                disabled={!context.state.changed}
-                tooltip-active="Save Changes"
-                tooltip-inactive="No Changes to Save"
+                <button
+                  onClick={this.handleSubmit.bind(this, context)}
+                  className="btn-submit"
+                  disabled={!context.state.changed}
+                  tooltip-active="Save Changes"
+                  tooltip-inactive="No Changes to Save"
                 >
                   <i class="far fa-edit"></i>
                 </button>
-                <button onClick={this.handleDelete.bind(this, context)}
-                onBlur={this.handleDeleteBlur.bind(this)} 
-                className={this.state.confirmDelete ? "btn-confirm-delete" : "btn-delete"} 
-                disabled={!(context.state.currentPatient._id)}
-                tooltip-active="Delete Patient"
-                tooltip-inactive="No Patient Loaded"><i class="fa fa-trash" aria-hidden="true"></i>
-</button>
+                <button
+                  onClick={this.handleDelete.bind(this, context)}
+                  onBlur={this.handleDeleteBlur.bind(this)}
+                  className={
+                    this.state.confirmDelete
+                      ? "btn-confirm-delete"
+                      : "btn-delete"
+                  }
+                  disabled={!context.state.currentPatient._id}
+                  tooltip-active="Delete Patient"
+                  tooltip-inactive="No Patient Loaded"
+                >
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
               </form>
             </div>
           );
