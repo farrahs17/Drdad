@@ -19,15 +19,17 @@ class Provider extends React.Component {
       history: "history",
       visits: []
     };
+
     this.state = {
       isLoading: false,
       currentPatient: this.emptyPatient,
       changed: false
     };
+
     socket.on("here push", data => {
-      toast("Patient Changed");
-      this.setState({ currentPatient: data });
+      this.loadPatient(data._id)
     });
+
   }
 
   setLoading(val) {
